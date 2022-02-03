@@ -115,7 +115,7 @@ contract AdCreator {
     returns(bool success) 
     {
         // Require to reach at least 30 people.
-        require(reach >= 30, "You must enter a number greater than 30.");
+        require(reach >= 30, "You must enter at least 30.");
 
         // Check promoter's [token] balance and pledged balance.
         // NOTE - Always check balances before transaction.
