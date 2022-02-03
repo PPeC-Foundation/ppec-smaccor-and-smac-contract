@@ -461,7 +461,7 @@ contract SmACV1 {
 
     /// Claim leftover rewards after advertisement expires.
     // if/when an Ad did not run successfully for any reason
-    // we want the promoter to be able to claim the tokens.
+    // We want promoters to be able to claim their tokens back.
     // We have to make sure that the Ad has expired.
     function destroy() public onlyPromoter {
         // Revert the call if the promotion is still running.
