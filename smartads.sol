@@ -490,7 +490,7 @@ contract SmACV1 {
         emit DelegateCleaner(msg.sender, cofferBalance());
     }
 
-    /// Empty the contract's rewards and make it harder for 
+    /// Empty the contract's tokens and make it harder for 
     /// the promoter to advertise.
     // We have a big surprise for scammers! loss of funds. Don't do it.
     // Refrain from scamming others, and abide by all community rules my friend!
@@ -509,7 +509,7 @@ contract SmACV1 {
         return true;
     }
 
-    /// Report this ad as a scam.
+    /// Report this SmAC as a scam.
     function scamReport() public returns (bool reported) {
         // Claimer balance.
         uint256 claimerBalance = PPeC(PPeCAddress).balanceOf(msg.sender);
