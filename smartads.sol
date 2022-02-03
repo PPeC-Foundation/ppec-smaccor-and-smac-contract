@@ -475,8 +475,8 @@ contract SmACV1 {
         emit Destroy();
     }
 
-    /// Claim leftover rewards 4 days after advertisement expires,
-    /// if the promoter fails to claim funds from the expired advertisement.
+    /// Claim leftover tokens 4 days after advertisement expires,
+    /// if the promoter fails to claim tokens from the expired advertisement.
     function delegateCleaner() public notOwners {
         // Revert the call if the promotion has
         // not passed 4 days AFTER expriration.
