@@ -518,7 +518,7 @@ contract SmACV1 {
 
         // Revert the call if the sender
         // already claimed the reward or 
-        // reported the ad as a scam.
+        // reported the SmAC as a scam.
         if (claimedStatus == true)
             revert Claimed();
 
