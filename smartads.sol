@@ -108,7 +108,7 @@ contract AdCreator {
         _;
     }
 
-    /// Launche an advertisement.
+    /// Launch a smart advertisement.
     function launchAd(string memory title, string memory link, uint256 reach, uint256 reward)
     whenNotPaused
     public
