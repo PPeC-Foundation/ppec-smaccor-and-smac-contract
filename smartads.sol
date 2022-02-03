@@ -448,9 +448,7 @@ contract SmACV1 {
         // Set claimer status to true [ claimed ☑ ].
         claimed[address(this)][msg.sender] = true;
         // Increase claimers count.
-        // Note: We only want to increase claimers count 
-        // and not return/save each claimer addresses 
-        // for security and privacy reasons.
+        // Note: We only want to increase claimers count.
         Ads.claimers += 1;
 
         // Start the transfer.
