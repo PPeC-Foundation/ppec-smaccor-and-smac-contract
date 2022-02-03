@@ -28,7 +28,7 @@ interface PPeC {
 
 // ----------------------------------------------------------------------------
 /// @title AdCreator : Smart Ads Contract Creator [SmACCor] - Enables addresses to publish Ads.
-/// @notice Ads cannot be updated once promoted.
+/// @notice Smart Ads cannot be updated once promoted.
 // ----------------------------------------------------------------------------
 contract AdCreator {
 
