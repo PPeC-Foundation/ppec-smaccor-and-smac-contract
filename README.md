@@ -1,5 +1,5 @@
 # ppec-smaccor-and-smac-contract
-PPeC SmACCor and SmAC contract
+PPeC's SmACCor and SmAC - solidity contracts
 ## smartads.sol
 This files contains the entire smart ads contract 
 ## smaccorv1.sol
