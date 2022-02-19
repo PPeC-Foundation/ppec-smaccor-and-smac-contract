@@ -18,7 +18,7 @@ import "./smac.sol";
 contract AdCreator {
 
     // Define public constant variables.
-    address PPeCAddress = 0xa1E607C05462D8b642C8BbdB0c87EdfE2aE67071;
+    address PPeCAddress = 0xE1498556390645cA488320fe979bC72BdecB6A57;
     address public founder;
     address public treasury;
     uint256 public minClaimerBalance;
