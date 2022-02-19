@@ -7,7 +7,7 @@ This file contains only instructions for the SmACCor
 ## smacv1.sol
 This file contains only instruction for the SmAC
 ## Compiling error
-For this contract to verify on etherscan you have to parse the value passed in the constructor
+For this contract to verify on etherscan you have to parse the value passed in the constructor `AdCreator` (uint256 minReward_, uint256 minBalance_)
 ### ERROR 
 (But we were unable to locate a matching bytecode (err_code_2))
 ### SOLUTION : parse values
