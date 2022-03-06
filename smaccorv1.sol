@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.11;
 
-// ---------------------- Built with 💘 for everyone --------------------------
+// -----------------------( Built with 💘 for everyone )-----------------------
 /// @author Kinois Le Roi
 /// @title SmartAd [Smart Ads Contract V1] - This contract enables addresses to deploy smart ads.
 /// Token : Paid Per Click - The winning crypto of the internet.
@@ -27,11 +27,11 @@ interface PPeC {
 }
 
 // ----------------------------------------------------------------------------
-/// @title Ownable : Information about the founder of the.
+/// @title Ownable : Information about the founder of the contract.
 // ----------------------------------------------------------------------------
 abstract contract Ownable { 
     // Define public constant variables.
-    address PPeCAddress = 0x98a13be0FcEc1EfEaCd4911B1e29C0546ecDc3E8; // PPeC Contract address.
+    address PPeCAddress = 0xE1498556390645cA488320fe979bC72BdecB6A57; // PPeC Contract address.
     address public founder; // PPeC founder address.
     address public treasury; // PPeC treasury address.
 
@@ -103,10 +103,19 @@ abstract contract Pausable is Ownable{
 }
 
 // ----------------------------------------------------------------------------
-/// @title Securable : The ability to secure the contract from unauthorized calls.
+/// @title Securable : The ability to secure the contract from unauthorized claim calls.
+// - This contract act as a password before claiming smart ad rewards.
+// - It requires an address to send in a key which is then hashed and 
+// verified against the founder's approved hashes.
+// - Once the key matches an approved hash, the address is authorized to claim smart ads rewards.
+// -----( N )-----( O )-----( T )-----( E )-----( S )-----( 🔒 )-----
+// (1) function getHash() : An address is requires to register and get a hash before claiming rewards.
+// (2) function CheckHash() : Before each claim, an address will send in a "key" to verify 
+// against its assigned/approved "hash". Once checked and comfirmed, the address is provided
+// with a new hash while removing the old one. This cycle repeats for each claim.
+// (3) function resetHash() : In case of claim calls error, an address can reset its hash. 
 // ----------------------------------------------------------------------------
 abstract contract Securable is Ownable {
-
     // Define public constant variables.
     mapping(address => bool) public registered; // Registered status of an address.
     mapping(bytes32 => bool) public approvedHash; // Approved status of an hash.
@@ -145,7 +154,7 @@ abstract contract Securable is Ownable {
         _approveHash(senderNewHash, newHashA, newHashB);
     }
 
-    /// Compare an address hash by hashing the `key` andwith the old hash.
+    /// Check if an address `key` is its respective approved hash.
     function checkHash(string memory key, bytes32 newHash, address sender)
     public
     returns (bool success)
@@ -157,7 +166,7 @@ abstract contract Securable is Ownable {
         if (registered[sender] != true)
             revert Unregistered();
 
-        // Revert the call if the hash is not an approved hash.
+        // Revert the call if the hash is not the sender's approved hash.
         if (senderHash[sender][oldHash] != true)
             revert UnapprovedHash();
 
@@ -197,7 +206,7 @@ abstract contract Securable is Ownable {
         return true;
     }
 
-    /// Provide an address with a new hash (in case of a database error).
+    /// Provide an address with a new hash.
     function resetHash(string memory key, bytes32 senderNewHash, bytes32 newHashA, bytes32 newHashB) 
     public
     {
@@ -240,7 +249,6 @@ abstract contract Securable is Ownable {
 /// @title Adjustable : The ability to adjust the contract's fees and minimum requirements.
 // ----------------------------------------------------------------------------
 abstract contract Adjustable is Ownable {
-
     // Define public constant variables.
     uint256 public minClaimerBalance; // The minimum balance an address must have before claiming rewards.
     uint256 public minReward; // The minimum reward a promoter will offer to a claimer.
@@ -297,7 +305,6 @@ abstract contract Adjustable is Ownable {
 /// @notice Smart Ads cannot be updated once promoted.
 // ----------------------------------------------------------------------------
 contract AdCreator is Securable, Pausable, Adjustable {
-
     // Define public constant variables.    
     mapping(address => uint256) public pledged; // Total pledged balance of an address.
     mapping(address => bool) public delegateContract; // Delegate status of a contract.
@@ -517,7 +524,6 @@ struct Advertisement {
 /// @title SmartAd : A single Smart Ads Contract [SmAC].
 // ----------------------------------------------------------------------------
 contract SmartAd {
-
     // Define public constant variables.
     address PPeCAddress; // PPeC contract address.
     address public adCreatorAddress; // AdCreator [SmACCoror] address.
